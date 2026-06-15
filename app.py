@@ -108,8 +108,8 @@ if st.button("Predict MW 1,3-BD IR Analyser"): # This button can be placed anywh
             if not prediction_in_range:
                 st.warning(f"Warning: Predicted value ({predicted_value:.4f}) is outside the specified target range [{target_min}, {target_max}].")
 
-            st.markdown("---
-**Input Parameters Used:**")
+            st.markdown("""---
+**Input Parameters Used:**""") # Corrected to use triple quotes
             for key, value in input_data.items():
                 st.write(f"- {key}: {value:.2f}")
 
