@@ -3,6 +3,7 @@ import pandas as pd
 import joblib
 import os
 import gdown
+from sklearn.ensemble import RandomForestRegressor
 
 # Define the restricted ranges for each input feature
 restricted_ranges = {
@@ -14,12 +15,8 @@ restricted_ranges = {
     'Feed Analyser (mol%)': {'min': 40.0, 'max': 52.0}
 }
 
-# Placeholder for Google Drive URL - USER WILL NEED TO UPDATE THIS
-# Get a shareable link for 'random_forest_model.joblib' from Google Drive
-# Example: https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing
-# Replace YOUR_FILE_ID with the actual ID from your shared link.
-# Ensure the file is shared publicly or with 'Anyone with the link can view'.
-MODEL_FILE_ID = '1iqoT2sAeDdACKI3h-KuJO_YdgNTLo_FJ' # <-- UPDATE THIS WITH YOUR MODEL'S FILE ID
+# Google Drive ID for the model file
+MODEL_FILE_ID =  + MODEL_FILE_ID +  # <-- UPDATED WITH YOUR MODEL'S FILE ID
 MODEL_URL = f'https://drive.google.com/uc?id={MODEL_FILE_ID}'
 MODEL_FILENAME = 'random_forest_model.joblib'
 
@@ -35,7 +32,13 @@ def validate_data_ranges(data, ranges):
                 raise ValueError(f"Input value for '{col}' ({value}) is outside the restricted range [{limits['min']}, {limits['max']}].")
     return True
 
-def load_model_and_predict(input_data_dict):
+_model_cache = None # Cache the model to avoid reloading on every request
+
+def load_model():
+    global _model_cache
+    if _model_cache is not None:
+        return _model_cache
+
     # Check if the model exists locally, if not, download it
     if not os.path.exists(MODEL_FILENAME):
         print(f"Model '{MODEL_FILENAME}' not found locally. Attempting to download from Google Drive...")
@@ -46,7 +49,11 @@ def load_model_and_predict(input_data_dict):
             raise ConnectionError(f"Failed to download model from Google Drive. Please ensure MODEL_FILE_ID is correct and the file is publicly accessible. Error: {e}")
 
     # Load the trained model
-    model = joblib.load(MODEL_FILENAME)
+    _model_cache = joblib.load(MODEL_FILENAME)
+    return _model_cache
+
+def load_model_and_predict(input_data_dict):
+    model = load_model() # Use the new load_model function
 
     # Convert input dictionary to DataFrame
     input_df = pd.DataFrame([input_data_dict])
