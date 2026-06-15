@@ -16,7 +16,7 @@ restricted_ranges = {
 }
 
 # Google Drive ID for the model file
-MODEL_FILE_ID =  + MODEL_FILE_ID +  # <-- UPDATED WITH YOUR MODEL'S FILE ID
+MODEL_FILE_ID = '1iqoT2sAeDdACKI3h-KuJO_YdgNTLo_FJ'  # <-- UPDATED WITH YOUR MODEL'S FILE ID
 MODEL_URL = f'https://drive.google.com/uc?id={MODEL_FILE_ID}'
 MODEL_FILENAME = 'random_forest_model.joblib'
 
