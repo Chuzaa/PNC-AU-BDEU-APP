@@ -105,7 +105,7 @@ with prediction_placeholder.container():
             predicted_value, prediction_in_range, target_min, target_max = prediction_logic.load_model_and_predict(input_data)
 
             with prediction_placeholder.container(): # Display prediction result in the placeholder at the top
-                st.markdown("Prediction Result:")
+                #st.markdown("Prediction Result:")
                 st.success(f"Predicted MW 1,3-BD IR Analyser (mol%): **{predicted_value:.4f}**")
 
                 if not prediction_in_range:
