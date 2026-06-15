@@ -91,15 +91,13 @@ if st.button("Predict MW 1,3-BD IR Analyser"):
     try:
         predicted_value, prediction_in_range, target_min, target_max = prediction_logic.load_model_and_predict(input_data)
 
-        st.subheader("
-Prediction Result:")
+        st.subheader("Prediction Result:")
         st.success(f"Predicted MW 1,3-BD IR Analyser (mol%): **{predicted_value:.4f}**")
 
         if not prediction_in_range:
             st.warning(f"Warning: Predicted value ({predicted_value:.4f}) is outside the specified target range [{target_min}, {target_max}].")
 
-        st.markdown("""---
-**Input Parameters Used:**""")
+        st.markdown("""---**Input Parameters Used:**""")
         for key, value in input_data.items():
             st.write(f"- {key}: {value:.2f}")
 
