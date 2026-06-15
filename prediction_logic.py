@@ -19,7 +19,7 @@ restricted_ranges = {
 # Example: https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing
 # Replace YOUR_FILE_ID with the actual ID from your shared link.
 # Ensure the file is shared publicly or with 'Anyone with the link can view'.
-MODEL_FILE_ID = 'YOUR_GOOGLE_DRIVE_FILE_ID' # <-- UPDATE THIS WITH YOUR MODEL'S FILE ID
+MODEL_FILE_ID = '1iqoT2sAeDdACKI3h-KuJO_YdgNTLo_FJ' # <-- UPDATE THIS WITH YOUR MODEL'S FILE ID
 MODEL_URL = f'https://drive.google.com/uc?id={MODEL_FILE_ID}'
 MODEL_FILENAME = 'random_forest_model.joblib'
 
